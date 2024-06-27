@@ -9,7 +9,7 @@ const SearchButton = ({
         <div className={className}>
             <button
                 type="button"
-                className="dark:highlight-white/5 z-30 hidden h-12 w-72 items-center space-x-3 rounded-lg bg-white px-4 text-left text-slate-400 shadow-sm ring-1 ring-slate-900/10 hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500 sm:flex dark:bg-slate-800 dark:text-slate-300 dark:ring-0 dark:hover:bg-slate-700"
+                className="dark:highlight-white/5 z-30 hidden h-12 w-72 items-center space-x-3 rounded-lg bg-white px-4 text-left text-slate-400 shadow-sm ring-1 ring-slate-900/10 transition duration-300 ease-in-out hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500 sm:flex dark:bg-black dark:text-slate-300 dark:shadow-[0px_0px_25px_5px_rgba(0,125,255,0.8)] dark:ring-0 dark:hover:bg-gray-900 dark:hover:shadow-blue-800"
                 onClick={onOpen}
             >
                 <svg

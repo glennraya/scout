@@ -34,7 +34,7 @@ export default function Welcome({
 
     return (
         <>
-            <Head title="Welcome" />
+            <Head title="LaraFlix - The Corniest Movie Collection in the Cosmos!" />
             <Navigation />
 
             {open && (
@@ -44,21 +44,19 @@ export default function Welcome({
                 />
             )}
 
-            <div className="gradient flex h-screen flex-col items-center justify-center gap-4">
+            <div className="gradient flex h-screen flex-col items-center justify-center gap-8">
                 <div className="absolute left-0 top-0 z-0 h-screen w-full bg-hero bg-cover bg-no-repeat opacity-15"></div>
-                <header className="flex w-full flex-col gap-4 text-white">
-                    <h1 className="z-10 flex flex-col text-center font-extrabold leading-[.7]">
-                        <span className="text-2xl font-black uppercase">
-                            The
-                        </span>
-                        <span className="font-honk text-[160px]">
-                            Movie Universe
+                <header className="z-10 flex w-full flex-col text-white">
+                    <h1 className="text-center font-extrabold leading-[.7]">
+                        <span className="font-honk text-[16rem] uppercase">
+                            LaraFlix
                         </span>
                     </h1>
                     <p className="text-center font-mono text-xl">
-                        The biggest movie collection in the cosmos!
+                        The corniest movie collection in the cosmos!
                     </p>
                 </header>
+
                 <SearchButton className="z-20" onOpen={handleToggle} />
             </div>
         </>

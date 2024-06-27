@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Movie;
 use Illuminate\Foundation\Application;
@@ -21,6 +22,8 @@ Route::get('/', function () {
         'movies' => $searchResult,
     ]);
 });
+
+Route::post('/search', [MovieController::class, 'search']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
