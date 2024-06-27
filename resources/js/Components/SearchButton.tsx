@@ -34,7 +34,7 @@ const SearchButton = ({
                     >
                         ⌘
                     </abbr>{' '}
-                    k
+                    K
                 </kbd>
             </button>
         </div>

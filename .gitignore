@@ -5,6 +5,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/data.ms
 .env
 .env.backup
 .env.production

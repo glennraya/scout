@@ -20,7 +20,8 @@ export default function Welcome({
         const down = (e: KeyboardEvent) => {
             if (
                 (e.key === 'k' && (e.metaKey || e.ctrlKey)) ||
-                e.key === 'Escape'
+                e.key === 'Escape' ||
+                e.key === '/'
             ) {
                 e.preventDefault()
                 setOpen(open => !open)
