@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface SearchResult {
     current_page: number;
     data: Record
@@ -37,7 +39,7 @@ export interface Movie {
     poster_path: string;
     release_date: string;
     movieCasts: MovieCast[]
-    _formatted: FormattedMovie[]
+    _formatted: FormattedMovie
 }
 
 export interface FormattedMovie {

@@ -16,3 +16,8 @@
     filter: brightness(57%) contrast(64%) hue-rotate(360deg) saturate(226%)
         sepia(26%);
 }
+
+.title em {
+    font-style: normal;
+    font-weight: 700;
+}

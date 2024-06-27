@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import { SearchResult } from '@/types/SearchResult'
 import TextInput from './TextInput'
 import axios from 'axios'
+import DOMPurify from 'dompurify'
 
 interface SearchDialogProps {
     className: string
@@ -56,9 +57,14 @@ const SearchDialog = ({ className = '', onClose }: SearchDialogProps) => {
                 <div className="flex flex-col gap-2">
                     {results?.data.hits.map(movie => (
                         <div className="flex" key={movie.id}>
-                            <div className="flex gap-2">
-                                {movie.original_title}
-                            </div>
+                            <div
+                                className="title gap-2"
+                                dangerouslySetInnerHTML={{
+                                    __html: DOMPurify.sanitize(
+                                        movie._formatted.original_title
+                                    )
+                                }}
+                            />
                         </div>
                     ))}
                 </div>
