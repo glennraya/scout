@@ -53,7 +53,7 @@ export default function Welcome({
                         </span>
                     </h1>
                     <p className="text-center font-mono text-xl">
-                        The corniest movie collection in the cosmos!
+                        The corniest movie collection (and title) in the cosmos!
                     </p>
                 </header>
 

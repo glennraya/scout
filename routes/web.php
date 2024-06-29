@@ -2,24 +2,16 @@
 
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Movie;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    $searchResult = Movie::search('Space Jam', function( $meiliSearch, string $query, array $options ){
-        $options['attributesToHighlight'] = ['original_title', 'overview'];
-
-        return $meiliSearch->search( $query, $options);
-    })->paginateRaw();
-
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
-        'movies' => $searchResult,
     ]);
 });
 

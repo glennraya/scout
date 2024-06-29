@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 export interface SearchResult {
     current_page: number;
     data: Record

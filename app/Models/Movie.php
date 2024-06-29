@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,8 +22,6 @@ class Movie extends Model
 
     /**
      * Get the indexable data array for the model.
-     *
-     * @return array<string, mixed>
      */
     public function toSearchableArray(): array
     {

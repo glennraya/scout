@@ -13,14 +13,14 @@ class MovieController extends Controller
      */
     public function search(Request $request): JsonResponse
     {
-        $search_result = Movie::search($request->keyword, function($meiliSearch, string $query, array $options){
+        $search_result = Movie::search($request->keyword, function ($meiliSearch, string $query, array $options) {
             $options['attributesToHighlight'] = ['original_title', 'overview', 'release_date'];
 
             return $meiliSearch->search($query, $options);
         })->paginateRaw(10);
 
         return response()->json([
-            'result' => $search_result
+            'result' => $search_result,
         ], 200);
     }
 }

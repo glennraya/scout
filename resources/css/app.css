@@ -20,4 +20,11 @@
 .title em {
     font-style: normal;
     font-weight: 700;
+    background-color: rgba(0, 0, 0, .15);
+}
+
+.overview em {
+    background-color: rgba(0, 0, 0, .10);
+    font-style: normal;
+    font-weight: 700;
 }
