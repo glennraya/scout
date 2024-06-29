@@ -12,6 +12,8 @@ interface SearchDialogProps {
 
 const SearchDialog = ({ className = '', onClose }: SearchDialogProps) => {
     const [searchValue, setSearchValue] = useState<string>('')
+
+    //  Will update the search keyword state when value of the search input changes.
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(event.target.value)
     }
@@ -33,6 +35,7 @@ const SearchDialog = ({ className = '', onClose }: SearchDialogProps) => {
     const [results, setResults] = useState<SearchResult | null>(null)
     useEffect(() => {
         if (debouncedValue) {
+            // Search for movies.
             axios
                 .post('/search', {
                     keyword: searchValue
@@ -54,14 +57,13 @@ const SearchDialog = ({ className = '', onClose }: SearchDialogProps) => {
         setCast(movieCast)
     }
 
-    // Paginations
+    // Pagination (Next, Prev)
     const paginate = (url: string) => {
         axios
             .post(url, {
                 keyword: searchValue
             })
             .then(res => {
-                console.log('Next Page: ', res.data)
                 setResults(res.data.result)
             })
     }
@@ -69,7 +71,7 @@ const SearchDialog = ({ className = '', onClose }: SearchDialogProps) => {
     return (
         <>
             <div className={className} onClick={() => onClose()}></div>
-            <div className="absolute left-1/2 top-1/2 z-30 flex w-[640px] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-2xl bg-white p-4 shadow-xl">
+            <div className="absolute left-1/2 top-1/2 z-30 flex max-h-[550px] w-[640px] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-2xl bg-white p-4 shadow-xl">
                 {/* Search input */}
                 <div className="flex items-center rounded-lg border-2 border-black/10 bg-gray-200 px-4">
                     <svg
@@ -136,6 +138,7 @@ const SearchDialog = ({ className = '', onClose }: SearchDialogProps) => {
                         </div>
                     )}
 
+                    {/* Movie list */}
                     {results?.data.hits.map(movie => (
                         <div
                             className="flex cursor-pointer gap-4 rounded-xl p-2 transition duration-300 ease-in-out hover:bg-gray-100 hover:shadow-sm"
@@ -147,27 +150,41 @@ const SearchDialog = ({ className = '', onClose }: SearchDialogProps) => {
                                 className="h-36 w-28 rounded-lg object-cover"
                             />
                             <div className="flex flex-col gap-2">
-                                <div
-                                    className="title gap-2 text-lg font-bold"
-                                    dangerouslySetInnerHTML={{
-                                        __html: DOMPurify.sanitize(
-                                            movie._formatted.original_title
-                                        )
-                                    }}
-                                ></div>
+                                {/* If attribute highlighting is enabled, show the formatted result. */}
+                                {movie._formatted ? (
+                                    <div
+                                        className="title gap-2 text-lg font-bold"
+                                        dangerouslySetInnerHTML={{
+                                            __html: DOMPurify.sanitize(
+                                                movie._formatted.original_title
+                                            )
+                                        }}
+                                    ></div>
+                                ) : (
+                                    <div className="title gap-2 text-lg font-bold">
+                                        {movie.original_title}
+                                    </div>
+                                )}
 
                                 <span className="text-sm font-bold">
                                     Overview
                                 </span>
 
-                                <div
-                                    className="overview text-sm text-gray-600"
-                                    dangerouslySetInnerHTML={{
-                                        __html: DOMPurify.sanitize(
-                                            movie._formatted.overview
-                                        )
-                                    }}
-                                ></div>
+                                {/* If attribute highlighting is enabled, show the formatted result. */}
+                                {movie._formatted ? (
+                                    <div
+                                        className="overview text-sm text-gray-600"
+                                        dangerouslySetInnerHTML={{
+                                            __html: DOMPurify.sanitize(
+                                                movie._formatted.overview
+                                            )
+                                        }}
+                                    ></div>
+                                ) : (
+                                    <div className="overview text-sm text-gray-600">
+                                        {movie.overview}
+                                    </div>
+                                )}
 
                                 <div className="mt-2 flex items-center justify-between">
                                     <span className="text-sm text-gray-600">
@@ -193,16 +210,16 @@ const SearchDialog = ({ className = '', onClose }: SearchDialogProps) => {
                 </div>
                 {results && results.data.hits.length > 0 && (
                     <>
-                        <div className="mt-4 flex justify-between border-t border-gray-200 pt-2">
-                            <span className="text-sm font-medium">
-                                <span className="text-gray-400">
+                        <div className="mt-4 flex justify-between border-t border-gray-200 pt-4 font-mono text-xs">
+                            <span className="font-medium">
+                                <span className="text-gray-500">
                                     Total Hits:
                                 </span>{' '}
                                 {results.data.totalHits} results
                             </span>
 
-                            <span className="text-sm font-medium">
-                                <span className="text-gray-400">
+                            <span className="font-medium">
+                                <span className="text-gray-500">
                                     Total Pages:
                                 </span>{' '}
                                 {results.data.page} of {results.data.totalPages}
@@ -211,7 +228,7 @@ const SearchDialog = ({ className = '', onClose }: SearchDialogProps) => {
                             <div className="flex gap-2">
                                 <button
                                     type="button"
-                                    className="rounded-md bg-black px-2 py-1 text-xs text-white hover:bg-gray-700"
+                                    className="rounded-md bg-black px-2 py-1 text-white hover:bg-gray-700"
                                     onClick={() =>
                                         paginate(results.prev_page_url)
                                     }
