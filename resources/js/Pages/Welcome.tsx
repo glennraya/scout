@@ -48,7 +48,7 @@ export default function Welcome({
                 <div className="absolute left-0 top-0 z-0 h-screen w-full bg-hero bg-cover bg-no-repeat opacity-15"></div>
                 <header className="z-10 flex w-full flex-col text-white">
                     <h1 className="text-center font-extrabold leading-[.7]">
-                        <span className="font-honk text-[16rem] uppercase">
+                        <span className="font-honk text-[14rem] uppercase">
                             LaraFlix
                         </span>
                     </h1>
