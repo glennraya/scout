@@ -41,7 +41,7 @@ const SearchDialog = ({ className = '', onClose }: SearchDialogProps) => {
                     keyword: searchValue
                 })
                 .then(res => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     setResults(res.data.result)
                 })
         }
@@ -57,7 +57,6 @@ const SearchDialog = ({ className = '', onClose }: SearchDialogProps) => {
         setCast(movieCast)
     }
 
-    // Pagination (Next, Prev)
     const paginate = (url: string) => {
         axios
             .post(url, {
@@ -208,6 +207,8 @@ const SearchDialog = ({ className = '', onClose }: SearchDialogProps) => {
                         </div>
                     ))}
                 </div>
+
+                {/* Pagination */}
                 {results && results.data.hits.length > 0 && (
                     <>
                         <div className="mt-4 flex justify-between border-t border-gray-200 pt-4 font-mono text-xs">

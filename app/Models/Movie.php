@@ -27,12 +27,12 @@ class Movie extends Model
     {
         return [
             'original_title' => $this->original_title,
-            'overview' => $this->overview,
             'poster_path' => $this->poster_path,
+            'overview' => $this->overview,
             'release_date' => $this->release_date,
             'movieCasts' => $this->movieCasts->map(function ($cast) {
                 return $cast->only('original_name', 'character');
-            })->toArray(),
+            })->toArray()
         ];
     }
 

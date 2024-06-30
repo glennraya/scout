@@ -136,12 +136,8 @@ return [
         'host' => env('MEILISEARCH_HOST', 'http://localhost:7700'),
         'key' => env('MEILISEARCH_KEY'),
         'index-settings' => [
-            // 'users' => [
-            //     'filterableAttributes'=> ['id', 'name', 'email'],
-            // ],
             Movie::class => [
-                'filterableAttributes' => ['original_title', 'overview', 'poster_path', 'release_date', 'movieCasts'],
-                // Other settings fields...
+                'filterableAttributes'=> ['original_title', 'poster_path', 'overview', 'release_date', 'movieCasts'],
             ],
         ],
     ],
